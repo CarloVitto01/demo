@@ -38,7 +38,7 @@ public class SegnalazioneController {
  
     @Operation(summary = "Inserisce una nuova segnalazione")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "La segnalazione creata correttamente")
+        @ApiResponse(responseCode = "200", description = "La segnalazione  creata correttamente")
     })
     @PostMapping(value = "/")
     public ResponseEntity<Boolean> createSegnalazione(@RequestBody SegnalazioneDTO dto){
