@@ -1,7 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.dto.SegnalazioneDTO;
-import com.example.demo.entity.TbSegnalazione;
+import com.example.demo.entity.Segnalazione;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,18 +10,18 @@ public class SegnalazioneMapper {
     ClienteMapper clienteMapper = new ClienteMapper();
     TecnicoMapper tecnicoMapper = new TecnicoMapper();
 
-    public SegnalazioneDTO toDto(TbSegnalazione tbSegnalazione){
+    public SegnalazioneDTO toDto(Segnalazione segnalazione){
         SegnalazioneDTO dto = new SegnalazioneDTO(
-                tbSegnalazione.getId(),
-                tbSegnalazione.getDescription(),
-                tbSegnalazione.getDate(),
-                clienteMapper.toDto(tbSegnalazione.getTbCliente()),
-                tecnicoMapper.toDto(tbSegnalazione.getTbTecnico())
+                segnalazione.getId(),
+                segnalazione.getDescription(),
+                segnalazione.getDate(),
+                clienteMapper.toDto(segnalazione.getTbCliente()),
+                tecnicoMapper.toDto(segnalazione.getTbTecnico())
         );
         return dto;
     }
-    public TbSegnalazione toEntity(SegnalazioneDTO dto){
-        TbSegnalazione entity = new TbSegnalazione(
+    public Segnalazione toEntity(SegnalazioneDTO dto){
+        Segnalazione entity = new Segnalazione(
                 dto.getId(),
                 dto.getDescription(),
                 dto.getDate(),
@@ -31,11 +31,11 @@ public class SegnalazioneMapper {
         return entity;
     }
 
-    public List<SegnalazioneDTO> mapListToDTOs(List<TbSegnalazione> listEntities){
+    public List<SegnalazioneDTO> mapListToDTOs(List<Segnalazione> listEntities){
         return listEntities.stream().map(this::toDto).toList();
     }
 
-    public List<TbSegnalazione> mapListToEntities(List<SegnalazioneDTO> listDTOs){
+    public List<Segnalazione> mapListToEntities(List<SegnalazioneDTO> listDTOs){
         return listDTOs.stream().map(this::toEntity).toList();
     }
 }

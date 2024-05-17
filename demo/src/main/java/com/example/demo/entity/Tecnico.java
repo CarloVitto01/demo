@@ -1,24 +1,26 @@
 package com.example.demo.entity;
+
 import jakarta.persistence.*;
+
 @Entity
-@Table(name = "Tb_Cliente")
-public class TbCliente {
+@Table(name = "Tb_Tecnico")
+public class Tecnico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cliente")
+    @Column(name = "id_tecnico")
     private long id;
-    @Column(name = "name_cliente")
+    @Column(name = "name_tecnico",nullable = false)
     private String name;
-    @Column(name = "surname_cliente")
+    @Column(name = "surname_tecnico",nullable = false)
     private String surname;
 
-    public TbCliente(long id, String name, String surname) {
+    public Tecnico(long id, String name, String surname) {
         this.id = id;
         this.name = name;
         this.surname = surname;
     }
 
-    public TbCliente() {
+    public Tecnico() {
     }
 
     public long getId() {

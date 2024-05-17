@@ -2,47 +2,44 @@ package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "Tb_Segnalazione")
-public class TbSegnalazione {
+public class Segnalazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_segnalazione")
     private long id;
-    @Column(name = "description_segnalazione")
+    @Column(name = "description_segnalazione", nullable = false)
     private String description;
     @Column(name = "date_segnalazione")
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Europe/Rome")
     private LocalDate date;
-    @ManyToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cliente", nullable = false)
-    private TbCliente tbCliente;
-    @ManyToOne
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Cliente cliente;
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_tecnico", nullable = false)
-    private TbTecnico tbTecnico;
+    private Tecnico tecnico;
 
-    public TbSegnalazione(long id, String description, LocalDate date, TbCliente tbCliente, TbTecnico tbTecnico) {
+    public Segnalazione(long id, String description, LocalDate date, Cliente cliente, Tecnico tecnico) {
         this.id = id;
         this.description = description;
         this.date = date;
-        this.tbCliente = tbCliente;
-        this.tbTecnico = tbTecnico;
+        this.cliente = cliente;
+        this.tecnico = tecnico;
     }
 
-    public TbSegnalazione() {
+    public Segnalazione() {
     }
 
-    public TbSegnalazione(String description, LocalDate date, TbCliente tbCliente, TbTecnico tbTecnico) {
+    public Segnalazione(String description, LocalDate date, Cliente cliente, Tecnico tecnico) {
         this.description = description;
         this.date = date;
-        this.tbCliente = tbCliente;
-        this.tbTecnico = tbTecnico;
+        this.cliente = cliente;
+        this.tecnico = tecnico;
     }
 
     public long getId() {
@@ -69,19 +66,19 @@ public class TbSegnalazione {
         this.date = date;
     }
 
-    public TbCliente getTbCliente() {
-        return tbCliente;
+    public Cliente getTbCliente() {
+        return cliente;
     }
 
-    public void setTbCliente(TbCliente tbCliente) {
-        this.tbCliente = tbCliente;
+    public void setTbCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public TbTecnico getTbTecnico() {
-        return tbTecnico;
+    public Tecnico getTbTecnico() {
+        return tecnico;
     }
 
-    public void setTbTecnico(TbTecnico tbTecnico) {
-        this.tbTecnico = tbTecnico;
+    public void setTbTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
     }
 }
