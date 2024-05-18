@@ -12,4 +12,7 @@ import java.util.List;
 @Repository
 public interface SegnalazioneRepository extends JpaRepository<Segnalazione, Long> {
 
+    @Query("SELECT s FROM Segnalazione s WHERE s.date = :firstDate")
+    List<Segnalazione> segnalazioneFiltered(@Param("firstDate") LocalDate firstDate);
+
 }

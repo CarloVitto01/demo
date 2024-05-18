@@ -56,14 +56,13 @@ public class SegnalazioneController {
         return new ResponseEntity<>(deleteReq, HttpStatus.OK);
     }
 
-    /*@Operation(summary = "Inserisce filtri")
+    @Operation(summary = "Inserisce filtri")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Segnalazioni trovate correttamente")
     })
-    @GetMapping(value = "/segnalazione/{date}")
-    public ResponseEntity<List<SegnalazioneDTO>> getFilteredSegnalazioni(
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        List<SegnalazioneDTO> dtoList = segnalazioneService.filteredByDateSegnalazione(date);
+    @GetMapping(value = "/segnalazione/{firstDate}")
+    public ResponseEntity<List<SegnalazioneDTO>> getFilteredSegnalazioni(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate firstDate) {
+        List<SegnalazioneDTO> dtoList = segnalazioneService.filteredByDateSegnalazione(firstDate);
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
-    }*/
+    }
 }

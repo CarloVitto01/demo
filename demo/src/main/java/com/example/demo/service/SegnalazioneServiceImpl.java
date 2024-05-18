@@ -29,6 +29,7 @@ public class SegnalazioneServiceImpl implements SegnalazioneService{
         Segnalazione segnalazione;
         try {
             segnalazione = segnalazioneMapper.toEntity(segnalazioneDto);
+            segnalazione.setDate(LocalDate.now());
             segnalazioneRepository.save(segnalazione);
             result = true;
         } catch (Exception e){
@@ -50,9 +51,9 @@ public class SegnalazioneServiceImpl implements SegnalazioneService{
         return result;
     }
 
-    /*@Override
-    public List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate date) {
-        List<Segnalazione> segnalazioneList = segnalazioneRepository.findByDate(date);
+    @Override
+    public List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate firstDate) {
+        List<Segnalazione> segnalazioneList = segnalazioneRepository.segnalazioneFiltered(firstDate);
         return segnalazioneMapper.mapListToDTOs(segnalazioneList);
-    }*/
+    }
 }

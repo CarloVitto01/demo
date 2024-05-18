@@ -12,5 +12,5 @@ public interface SegnalazioneService {
     boolean createSegnalazione(SegnalazioneDTO segnalazione) throws Exception;
     boolean deleteSegnalazione(long id) throws Exception;
 
-    //List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate date);
+    List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate firstDate);
 }
