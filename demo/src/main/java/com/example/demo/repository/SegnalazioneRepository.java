@@ -12,7 +12,11 @@ import java.util.List;
 @Repository
 public interface SegnalazioneRepository extends JpaRepository<Segnalazione, Long> {
 
-    @Query("SELECT s FROM Segnalazione s WHERE s.date = :firstDate")
-    List<Segnalazione> segnalazioneFiltered(@Param("firstDate") LocalDate firstDate);
+    @Query("SELECT s FROM Segnalazione s WHERE s.date = :date")
+    List<Segnalazione> segnalazioneFiltered(@Param("date") LocalDate date);
 
+    @Query("SELECT s FROM Segnalazione s WHERE s.cliente.surname LIKE %:value%")
+    List<Segnalazione> segnalazioneFilteredBy(@Param("value") String value);
 }
+
+

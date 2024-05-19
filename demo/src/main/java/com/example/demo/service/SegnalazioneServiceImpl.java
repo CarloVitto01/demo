@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -52,8 +53,20 @@ public class SegnalazioneServiceImpl implements SegnalazioneService{
     }
 
     @Override
-    public List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate firstDate) {
-        List<Segnalazione> segnalazioneList = segnalazioneRepository.segnalazioneFiltered(firstDate);
+    public List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate date) {
+        List<Segnalazione> segnalazioneList = segnalazioneRepository.segnalazioneFiltered(date);
         return segnalazioneMapper.mapListToDTOs(segnalazioneList);
     }
+
+    @Override
+    public List<SegnalazioneDTO> filteredBy(String filter, String inputFilter) {
+        List<Segnalazione> segnalazioneList = new ArrayList<>();
+        if ("date".equals(filter)) {
+            segnalazioneList = segnalazioneRepository.segnalazioneFiltered(LocalDate.parse(inputFilter));
+        } else if ("surname".equals(filter)) {
+            segnalazioneList = segnalazioneRepository.segnalazioneFilteredBy(inputFilter);
+        }
+        return segnalazioneMapper.mapListToDTOs(segnalazioneList);
+    }
+
 }

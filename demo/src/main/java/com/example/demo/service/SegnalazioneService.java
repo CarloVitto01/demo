@@ -8,9 +8,8 @@ import java.util.List;
 
 public interface SegnalazioneService {
     List<SegnalazioneDTO> getAllSegnalazioni();
-
     boolean createSegnalazione(SegnalazioneDTO segnalazione) throws Exception;
     boolean deleteSegnalazione(long id) throws Exception;
-
-    List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate firstDate);
+    List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate date);
+    List<SegnalazioneDTO> filteredBy(String filter, String inputFilter);
 }
