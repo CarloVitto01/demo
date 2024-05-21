@@ -53,18 +53,14 @@ public class SegnalazioneServiceImpl implements SegnalazioneService{
     }
 
     @Override
-    public List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate date) {
-        List<Segnalazione> segnalazioneList = segnalazioneRepository.segnalazioneFiltered(date);
-        return segnalazioneMapper.mapListToDTOs(segnalazioneList);
-    }
-
-    @Override
-    public List<SegnalazioneDTO> filteredBy(String filter, String inputFilter) {
+    public List<SegnalazioneDTO> filteredBy(String surname, LocalDate date) {
         List<Segnalazione> segnalazioneList = new ArrayList<>();
-        if ("date".equals(filter)) {
-            segnalazioneList = segnalazioneRepository.segnalazioneFiltered(LocalDate.parse(inputFilter));
-        } else if ("surname".equals(filter)) {
-            segnalazioneList = segnalazioneRepository.segnalazioneFilteredBy(inputFilter);
+        if (surname == null && date != null) {
+            segnalazioneList = segnalazioneRepository.segnalazioneFilteredByDate(date);
+        } else if (surname != null && date == null) {
+            segnalazioneList = segnalazioneRepository.segnalazioneFilteredBySurname(surname);
+        } else if (surname != null && date != null) {
+            segnalazioneList = segnalazioneRepository.segnalazioneFilteredByDateAndSurname(date, surname);
         }
         return segnalazioneMapper.mapListToDTOs(segnalazioneList);
     }

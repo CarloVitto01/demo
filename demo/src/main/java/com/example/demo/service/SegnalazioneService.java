@@ -10,6 +10,6 @@ public interface SegnalazioneService {
     List<SegnalazioneDTO> getAllSegnalazioni();
     boolean createSegnalazione(SegnalazioneDTO segnalazione) throws Exception;
     boolean deleteSegnalazione(long id) throws Exception;
-    List<SegnalazioneDTO> filteredByDateSegnalazione(LocalDate date);
-    List<SegnalazioneDTO> filteredBy(String filter, String inputFilter);
+
+    List<SegnalazioneDTO> filteredBy(String surname, LocalDate date);
 }
