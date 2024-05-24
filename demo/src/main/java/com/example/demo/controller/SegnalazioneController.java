@@ -32,7 +32,7 @@ public class SegnalazioneController {
         @ApiResponse(responseCode = "200", description = "La segnalazione  creata correttamente")
     })
     @PostMapping(value = "/segnalazione")
-    public ResponseEntity<Boolean> createSegnalazione(@RequestBody SegnalazioneDTO segnalazioneDTO) throws Exception {
+    public ResponseEntity<Boolean> createSegnalazione(@RequestBody SegnalazioneDTO segnalazioneDTO) {
         boolean createReq = segnalazioneService.createSegnalazione(segnalazioneDTO);
         return new ResponseEntity<>(createReq, HttpStatus.OK);
     }

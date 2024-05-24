@@ -19,36 +19,21 @@ public class SegnalazioneServiceImpl implements SegnalazioneService{
     private SegnalazioneMapper segnalazioneMapper;
  
     @Override
-    public boolean createSegnalazione(SegnalazioneDTO segnalazioneDto) throws Exception {
-        boolean result = false;
-        Segnalazione segnalazione;
-        try {
-            segnalazione = segnalazioneMapper.toEntity(segnalazioneDto);
-            segnalazione.setDate(LocalDate.now());
-            segnalazioneRepository.save(segnalazione);
-            result = true;
-        } catch (Exception e){
-            throw new Exception("Errore nella creazione della segnalazione!");
-        }
-        return result;
+    public boolean createSegnalazione(SegnalazioneDTO segnalazioneDto) {
+        segnalazioneDto.setDate(LocalDate.now());
+        segnalazioneRepository.save(segnalazioneMapper.toEntity(segnalazioneDto));
+        return true;
     }
 
     @Override
-    public boolean deleteSegnalazione(long id) throws Exception{
-        boolean result = false;
-        try {
-            segnalazioneRepository.findById(id).orElseThrow();
+    public boolean deleteSegnalazione(long id) {
             segnalazioneRepository.deleteById(id);
-            result = true;
-        } catch (Exception e){
-            throw new Exception("Errore nella cancellazione della segnalazione!");
-        }
-        return result;
+            return true;
     }
 
     @Override
     public List<SegnalazioneDTO> filteredBy(String surname, LocalDate date) {
-        List<Segnalazione> segnalazioneList = new ArrayList<>();
+        List<Segnalazione> segnalazioneList;
         if (surname == null && date != null) {
             segnalazioneList = segnalazioneRepository.segnalazioneFilteredByDate(date);
         } else if (surname != null && date == null) {

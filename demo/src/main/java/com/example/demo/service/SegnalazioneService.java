@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface SegnalazioneService {
-    boolean createSegnalazione(SegnalazioneDTO segnalazione) throws Exception;
+    boolean createSegnalazione(SegnalazioneDTO segnalazione);
     boolean deleteSegnalazione(long id) throws Exception;
 
     List<SegnalazioneDTO> filteredBy(String surname, LocalDate date);
