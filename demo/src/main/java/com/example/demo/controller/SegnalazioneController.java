@@ -26,15 +26,6 @@ public class SegnalazioneController {
     @Autowired
     private SegnalazioneMapper segnalazioneMapper;
 
-    @Operation(summary = "Recupera l'elenco delle segnalazioni")
-    @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Lista recuperata correttamente")
-    })
-    @GetMapping(value = "/segnalazioni")
-    public ResponseEntity<List<SegnalazioneDTO>> getAllSegnalazioni(){
-        List<SegnalazioneDTO> segnalazioneDTOList = segnalazioneService.getAllSegnalazioni();
-        return new ResponseEntity<>(segnalazioneDTOList, HttpStatus.OK);
-    }
  
     @Operation(summary = "Inserisce una nuova segnalazione")
     @ApiResponses(value = {

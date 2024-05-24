@@ -17,12 +17,6 @@ public class SegnalazioneServiceImpl implements SegnalazioneService{
     private SegnalazioneRepository segnalazioneRepository;
     @Autowired
     private SegnalazioneMapper segnalazioneMapper;
-    
-    @Override
-    public List<SegnalazioneDTO> getAllSegnalazioni() {
-        List<Segnalazione> segnalazioneList = segnalazioneRepository.findAll();
-        return segnalazioneMapper.mapListToDTOs(segnalazioneList);
-    }
  
     @Override
     public boolean createSegnalazione(SegnalazioneDTO segnalazioneDto) throws Exception {
@@ -61,6 +55,8 @@ public class SegnalazioneServiceImpl implements SegnalazioneService{
             segnalazioneList = segnalazioneRepository.segnalazioneFilteredBySurname(surname);
         } else if (surname != null && date != null) {
             segnalazioneList = segnalazioneRepository.segnalazioneFilteredByDateAndSurname(date, surname);
+        } else {
+            segnalazioneList = segnalazioneRepository.findAll();
         }
         return segnalazioneMapper.mapListToDTOs(segnalazioneList);
     }

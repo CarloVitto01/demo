@@ -14,6 +14,7 @@ public class Tecnico {
     @Column(name = "surname_tecnico",nullable = false)
     private String surname;
 
+
     public Tecnico(long id, String name, String surname) {
         this.id = id;
         this.name = name;

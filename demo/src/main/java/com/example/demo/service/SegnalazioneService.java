@@ -7,7 +7,6 @@ import java.util.List;
 
 
 public interface SegnalazioneService {
-    List<SegnalazioneDTO> getAllSegnalazioni();
     boolean createSegnalazione(SegnalazioneDTO segnalazione) throws Exception;
     boolean deleteSegnalazione(long id) throws Exception;
 
