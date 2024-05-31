@@ -18,7 +18,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("https://demo-1-prova.up.railway.app/api/v1/segnalazione")
+@CrossOrigin("*")
+@RequestMapping("/api/v1/segnalazione")
 public class SegnalazioneController {
     @Autowired
     private SegnalazioneService segnalazioneService;
