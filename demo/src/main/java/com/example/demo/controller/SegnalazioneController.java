@@ -18,8 +18,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
-@RequestMapping("/api/v1/segnalazione")
 public class SegnalazioneController {
     @Autowired
     private SegnalazioneService segnalazioneService;
