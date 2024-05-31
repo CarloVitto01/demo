@@ -18,41 +18,43 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "https://demo-1-prova.up.railway.app") // Replace with specific allowed origins
 @RequestMapping("/api/v1/segnalazione")
 public class SegnalazioneController {
+
     @Autowired
     private SegnalazioneService segnalazioneService;
     @Autowired
     private SegnalazioneMapper segnalazioneMapper;
 
- 
     @Operation(summary = "Inserisce una nuova segnalazione")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "La segnalazione  creata correttamente")
+            @ApiResponse(responseCode = "200", description = "La segnalazione è stata creata correttamente")
     })
     @PostMapping(value = "/segnalazione")
     public ResponseEntity<Boolean> createSegnalazione(@RequestBody SegnalazioneDTO segnalazioneDTO) {
-        boolean createReq = segnalazioneService.createSegnalazione(segnalazioneDTO);
-        return new ResponseEntity<>(createReq, HttpStatus.OK);
+        boolean creationSuccessful = segnalazioneService.createSegnalazione(segnalazioneDTO);
+        return new ResponseEntity<>(creationSuccessful, HttpStatus.OK);
     }
 
     @Operation(summary = "Elimina una segnalazione esistente")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "204", description = "Segnalazione eliminata correttamente")
+            @ApiResponse(responseCode = "204", description = "Segnalazione eliminata correttamente")
     })
     @DeleteMapping(value = "/segnalazione/{id}")
-    public ResponseEntity<Boolean> deleteSegnalazione(@PathVariable long id) throws Exception {
-        boolean deleteReq = segnalazioneService.deleteSegnalazione(id);
-        return new ResponseEntity<>(deleteReq, HttpStatus.OK);
+    public ResponseEntity<Void> deleteSegnalazione(@PathVariable long id) throws Exception {
+        segnalazioneService.deleteSegnalazione(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Use 204 No Content for successful deletions
     }
 
-    @Operation(summary = "Inserisci i filtri")
+    @Operation(summary = "Recupera le segnalazioni filtrate")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Segnalazioni trovate correttamente")
     })
     @GetMapping(value = "/filteredList")
-    public ResponseEntity<List<SegnalazioneDTO>> getFilteredSegnalazioni(@RequestParam(required = false) String surname, @RequestParam(required = false) LocalDate date) {
+    public ResponseEntity<List<SegnalazioneDTO>> getFilteredSegnalazioni(
+            @RequestParam(required = false) String surname,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         List<SegnalazioneDTO> dtoList = segnalazioneService.filteredBy(surname, date);
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
