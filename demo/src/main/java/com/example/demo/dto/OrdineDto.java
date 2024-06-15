@@ -2,19 +2,17 @@ package com.example.demo.dto;
 
 import java.time.LocalDate;
 
-public class SegnalazioneDTO {
+public class OrdineDto {
     private long id;
-    private String description;
     private LocalDate date;
     private ClienteDTO cliente;
-    private TecnicoDTO tecnico;
+    private ProdottoDto prodotto;
 
-    public SegnalazioneDTO(long id, String description, LocalDate date, ClienteDTO cliente, TecnicoDTO tecnico) {
+    public OrdineDto(long id, LocalDate date, ClienteDTO cliente, ProdottoDto prodotto) {
         this.id = id;
-        this.description = description;
         this.date = date;
         this.cliente = cliente;
-        this.tecnico = tecnico;
+        this.prodotto = prodotto;
     }
 
     public long getId() {
@@ -23,14 +21,6 @@ public class SegnalazioneDTO {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public LocalDate getDate() {
@@ -49,11 +39,11 @@ public class SegnalazioneDTO {
         this.cliente = cliente;
     }
 
-    public TecnicoDTO getTecnico() {
-        return tecnico;
+    public ProdottoDto getProdotto() {
+        return prodotto;
     }
 
-    public void setTecnico(TecnicoDTO tecnico) {
-        this.tecnico = tecnico;
+    public void setProdotto(ProdottoDto prodotto) {
+        this.prodotto = prodotto;
     }
 }

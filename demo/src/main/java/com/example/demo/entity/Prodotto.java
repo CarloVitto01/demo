@@ -3,25 +3,25 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Tb_Tecnico")
-public class Tecnico {
+@Table(name = "prodotto")
+public class Prodotto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_tecnico")
+    @Column(name = "id_prodotto")
     private long id;
-    @Column(name = "name_tecnico",nullable = false)
+    @Column(name = "name")
     private String name;
-    @Column(name = "surname_tecnico",nullable = false)
-    private String surname;
+    @Column(name = "prezzo")
+    private double prezzo;
 
 
-    public Tecnico(long id, String name, String surname) {
+    public Prodotto(long id, String name, double prezzo) {
         this.id = id;
         this.name = name;
-        this.surname = surname;
+        this.prezzo = prezzo;
     }
 
-    public Tecnico() {
+    public Prodotto() {
     }
 
     public long getId() {
@@ -40,11 +40,11 @@ public class Tecnico {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public double getPrezzo() {
+        return prezzo;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
     }
 }

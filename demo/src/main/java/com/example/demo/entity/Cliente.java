@@ -1,24 +1,21 @@
 package com.example.demo.entity;
 import jakarta.persistence.*;
 @Entity
-@Table(name = "Tb_Cliente")
+@Table(name = "cliente")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
     private long id;
-    @Column(name = "name_cliente",nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
-    @Column(name = "surname_cliente",nullable = false)
-    private String surname;
-
-    public Cliente(long id, String name, String surname) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-    }
 
     public Cliente() {
+    }
+
+    public Cliente(long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     public long getId() {
@@ -35,13 +32,5 @@ public class Cliente {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 }

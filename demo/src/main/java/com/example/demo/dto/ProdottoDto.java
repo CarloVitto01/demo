@@ -1,14 +1,14 @@
 package com.example.demo.dto;
 
-public class TecnicoDTO {
+public class ProdottoDto {
     private long id;
     private String name;
-    private String surname;
+    private double prezzo;
 
-    public TecnicoDTO(long id, String name, String surname) {
+    public ProdottoDto(long id, String name, double prezzo) {
         this.id = id;
         this.name = name;
-        this.surname = surname;
+        this.prezzo = prezzo;
     }
 
     public long getId() {
@@ -27,11 +27,11 @@ public class TecnicoDTO {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public double getPrezzo() {
+        return prezzo;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
     }
 }
